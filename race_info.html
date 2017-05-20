@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	</head>
 	<body>
 
@@ -148,6 +150,139 @@
 
 								<hr />
 
+								<div id="paypal-button"></div>
+
+								<div class="row uniform">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select id="select-membership" name="membership">
+												<option value="Membership">Membership $10.00 NZD</option>
+												<option value="Membership & Series Entry">Membership & Series Entry $50.00 NZD</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+								<div id="confirm" class="hidden">
+							    <div>Ship to:</div>
+							    <div><span id="recipient"></span>, <span id="line1"></span>, <span id="city"></span></div>
+							    <div><span id="state"></span>, <span id="zip"></span>, <span id="country"></span></div>
+
+							    <button class="special" id="confirmButton">Complete Payment</button>
+								</div>
+								<div id="thanks" class="hidden">
+								    Thanks, <span id="thanksname"></span>!
+								</div>
+
+								<p id="msg" class="hidden error">Please check the checkbox</p>
+								<p>
+							    <label><input id="check" type="checkbox"> Check here to continue</label>
+								</p>
+
+
+						    <script>
+									function isValid() {
+										return document.querySelector('#check').checked;
+									}
+
+									function onChangeCheckbox(handler) {
+										document.querySelector('#check').addEventListener('change', handler);
+									}
+
+									function toggleValidationMessage() {
+										document.querySelector('#msg').style.display = (isValid() ? 'none' : 'block');
+									}
+
+									function toggleButton(actions) {
+										return isValid() ? actions.enable() : actions.disable();
+									}
+
+
+					        paypal.Button.render({
+				            env: 'sandbox', // Or 'production',
+										style: {
+					            label: 'checkout', // checkout | credit | pay
+					            size:  'small',    // small | medium | responsive
+					            shape: 'pill',     // pill | rect
+					            color: 'blue'      // gold | blue | silver
+						        },
+										client: {
+					            sandbox: 'ASf59Qvr6trrkb3Oa4P6jJyyIxd3YaXC6HnsiDyRJ8bjT-YdaUFA77JAWXvZyqDqb9ACAjePyM_RSi-s',
+					            production: '<insert production client id>'
+						        },
+				            commit: true, // Show a 'Pay Now' button
+										// validate: function(actions) {
+					          //   toggleButton(actions);
+					          //   onChangeCheckbox(function() {
+					          //       toggleButton(actions);
+					          //   });
+						        // },
+
+						        // onClick: function() {
+										// 	alert('Clicked!')
+					          //   toggleValidationMessage();
+						        // },
+				            payment: function(actions) {
+											return actions.payment.create({
+				                transactions: [{
+	                        amount: { total: '0.01', currency: 'USD' }
+		                    }]
+					            }, {
+				                input_fields: {
+			                    no_shipping: 1
+												}
+			                });
+			                // Set up the payment here
+				            },
+				            onAuthorize: function(data, actions) {
+											// if (error === 'INSTRUMENT_DECLINED') {
+				              //   actions.restart();
+					            // }
+											return actions.payment.get().then(function(data) {
+												// Display the payment details and a confirmation button
+												alert('Authorized!')
+												var shipping = data.payer.payer_info.shipping_address;
+
+												// document.querySelector('#recipient').innerText = shipping.recipient_name;
+												// document.querySelector('#line1').innerText     = shipping.line1;
+												// document.querySelector('#city').innerText      = shipping.city;
+												// document.querySelector('#state').innerText     = shipping.state;
+												// document.querySelector('#zip').innerText       = shipping.postal_code;
+												// document.querySelector('#country').innerText   = shipping.country_code;
+												//
+												// document.querySelector('#paypal-button-container').style.display = 'none';
+												// document.querySelector('#confirm').style.display = 'block';
+
+												// Listen for click on confirm button
+
+												// document.querySelector('#confirmButton').addEventListener('click', function() {
+													// Disable the button and show a loading message
+													// document.querySelector('#confirm').innerText = 'Loading...';
+													// document.querySelector('#confirm').disabled = true;
+													// Execute the payment
+													// return actions.payment.execute().then(function() {
+														// Show a thank-you note
+														// document.querySelector('#thanksname').innerText = shipping.recipient_name;
+														//
+														// document.querySelector('#confirm').style.display = 'none';
+														// document.querySelector('#thanks').style.display = 'block';
+												// 	});
+												// });
+											});
+											// return actions.payment.execute().then(function() {
+											// 	window.alert('Payment Complete!');
+											// });
+			                // Execute the payment here
+				           	},
+									 	onCancel: function(data, actions) {
+											return actions.redirect();
+									 	},
+									 	onError: function(err) {
+											// Show an error page here, when an error occurs
+										}
+					      	}, '#paypal-button');
+						    </script>
 								<!-- <p align='center'><strong>MEMBERSHIP OPTIONS CLOSED<br>WILL RE-OPEN AFTER ROUND 1</strong></p> -->
 
 								<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -232,7 +367,7 @@
 							<li><a href="mailto:huttcross@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">
-							<li>&copy; H&uuml;ttcross</li><li>Design: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; H&uuml;ttcross</li><li>Design: <a target="_blank" href="https://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
 
