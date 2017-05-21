@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	</head>
 	<body>
 
@@ -136,89 +138,84 @@
 
 								<p>To keep things more administratively simple, we're intending to run an online entry system this year. All going to plan, you'll be able to enter online from the week of 22 May. The prices for the series will be:</p>
 
-								<p><strong>Online entry fee per race: $15</strong></p>
-								<p><strong>On the day entry fee per race: $20 (cash only)</strong></p>
-								<p><strong>Online season entry (all 6 races, <a href="membership.html">members only</a>): $75</strong></p>
+								<blockquote>
+									<p>Online entry fee per race: $15</p>
+									<p>On the day entry fee per race: $20 (cash only)</p>
+									<p>Online season entry (all 6 races, <a href="membership.html">members only</a>): $75</p>
+								</blockquote>
 
 								<p>As with previous years, the Kids' Grade will be free to enter.</p>
 
-								<!-- <p>Pre-entry for Round 1 will open on Monday 22 May. race will close at 8pm on the Thursday before each round</p> -->
+								<p>Pre-entry for each race will close at midnight on the Thursday before each round</p>
 
-								<!-- <p>Pre-entry for each race will close at 8pm on the Thursday before each round</p> -->
+								<hr>
 
-								<hr />
+								<h4>Entry Form</h4>
 
-								<!-- <p align='center'><strong>MEMBERSHIP OPTIONS CLOSED<br>WILL RE-OPEN AFTER ROUND 1</strong></p> -->
-
-								<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 									<div class="row uniform">
 										<div class="12u">
 											<input type="hidden" name="cmd" value="_s-xclick">
-											<input type="hidden" name="hosted_button_id" value="6NSSDB6JHR5UJ">
-											<input type="hidden" name="on0" value="Membership">
+											<input type="hidden" name="hosted_button_id" value="WSWX5E4PZZLLS">
+											<input type="hidden" name="on0" value="Race entry">
+											<input type="hidden" name="on1" value="Grade">
 										</div>
 									</div>
+
 									<div class="row uniform">
 										<div class="12u">
 											<div class="select-wrapper">
-												<select id="demo-category" name="os0">
-													<option value="Membership">Membership $10.00 NZD</option>
-													<option value="Membership & Series Entry">Membership & Series Entry $50.00 NZD</option>
+												<label>Race Selection - see membership page <a href="membership.html">here</a> to sign up and get discounted season entry!</label>
+												<select name="os0">
+													<option value="Race 1 - 28 May - Ngati Tama">Race 1 - 28 May - Ngati Tama $15.00 NZD</option>
+													<option value="Season entry (existing members only)">Season entry all 6 races (existing members only) $75.00 NZD</option>
 												</select>
 											</div>
 										</div>
 									</div>
-									<div class="row uniform">
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on1" value="First Name">
-											<label>First Name<input type="text" required name="os1" placeholder="First Name" maxlength="200"></label>
-										</div>
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on2" value="Family Name">
-											<label>Family Name<input type="text" required name="os2" placeholder="Family Name" maxlength="200"></label>
-										</div>
-									</div>
+
 									<div class="row uniform">
 										<div class="12u">
-											<input type="hidden" name="on3" value="Address">
-											<label>Address<input type="text" name="os3" placeholder="Street Address and Suburb" maxlength="200"></label>
+											<div class="select-wrapper">
+												<label>Grade</label>
+												<select name="os1">
+													<option value="Entry Grade (men and women mixed, 30 mins)">Entry Grade (men and women mixed, 30 mins) </option>
+													<option value="B Grade Men (40 mins)">B Grade Men (40 mins) </option>
+													<option value="A Grade Men (50 mins)">A Grade Men (50 mins) </option>
+													<option value="Open Grade Women (40 mins)">Open Grade Women (40 mins) </option>
+												</select>
+											</table>
+											</div>
 										</div>
 									</div>
+
 									<div class="row uniform">
 										<div class="4u 12u$(small)">
-											<input type="hidden" name="on7" value="DOB">
-											<label>DOB<input type="text" name="os7" placeholder="DD/MM/YYYY" maxlength="200"></label>
+											<input type="hidden" name="on2" value="First Name">
+											<label>First Name<input type="text" name="os2" placeholder="First Name" maxlength="200" required></label>
 										</div>
 										<div class="4u 12u$(small)">
-											<input type="hidden" name="on5" value="Gender">
-											<label>Gender<input type="text" name="os5" maxlength="200"></label>
+											<input type="hidden" name="on3" value="Family Name">
+											<label>Family Name<input type="text" required name="os3" placeholder="Family Name" maxlength="200" required></label>
 										</div>
 										<div class="4u 12u$(small)">
-											<input type="hidden" name="on8" value="Email">
-											<label>Email<input type="email" required name="os8" maxlength="200"></label>
+											<input type="hidden" name="on4" value="Email">
+											<label>Email<input type="email" name="os4" placeholder="Email" required></label>
 										</div>
 									</div>
-									<div class="row uniform">
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on9" value="Emergency Contact Name">
-											<label>Emergency Contact Name<input type="text" name="os9" maxlength="200"></label>
-										</div>
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on10" value="Emergency Contact Phone">
-											<label>Emergency Contact Phone<input type="text" name="os10" maxlength="200"></label>
-										</div>
-									</div>
+
 									<div class="row uniform">
 										<div class="12u$" style="text-align:center">
 											<ul class="actions">
 												<li><input type="hidden" name="currency_code" value="NZD"></li>
-												<li><input type="hidden" name="item_name" value="Membership"></li>
+												<li><input type="hidden" name="item_name" value="Race Entry"></li>
 												<li><input type="submit" name="submit" value="Purchase Through PayPal" class="special" /></li>
 												<li><input type="reset" value="Reset" /></li>
 											</ul>
 										</div>
 									</div>
-								</form> -->
+								</form>
+
 							</div>
 						</section>
 					</article>
@@ -232,7 +229,7 @@
 							<li><a href="mailto:huttcross@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">
-							<li>&copy; H&uuml;ttcross</li><li>Design: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; H&uuml;ttcross</li><li>Design: <a target="_blank" href="https://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
 
