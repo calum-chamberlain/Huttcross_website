@@ -138,222 +138,84 @@
 
 								<p>To keep things more administratively simple, we're intending to run an online entry system this year. All going to plan, you'll be able to enter online from the week of 22 May. The prices for the series will be:</p>
 
-								<p><strong>Online entry fee per race: $15</strong></p>
-								<p><strong>On the day entry fee per race: $20 (cash only)</strong></p>
-								<p><strong>Online season entry (all 6 races, <a href="membership.html">members only</a>): $75</strong></p>
+								<blockquote>
+									<p>Online entry fee per race: $15</p>
+									<p>On the day entry fee per race: $20 (cash only)</p>
+									<p>Online season entry (all 6 races, <a href="membership.html">members only</a>): $75</p>
+								</blockquote>
 
 								<p>As with previous years, the Kids' Grade will be free to enter.</p>
 
-								<!-- <p>Pre-entry for Round 1 will open on Monday 22 May. race will close at 8pm on the Thursday before each round</p> -->
+								<p>Pre-entry for each race will close at midnight on the Thursday before each round</p>
 
-								<!-- <p>Pre-entry for each race will close at 8pm on the Thursday before each round</p> -->
+								<hr>
 
-								<hr />
+								<h4>Entry Form</h4>
 
-								<div id="paypal-button"></div>
-
-								<div class="row uniform">
-									<div class="12u">
-										<div class="select-wrapper">
-											<select id="select-membership" name="membership">
-												<option value="Membership">Membership $10.00 NZD</option>
-												<option value="Membership & Series Entry">Membership & Series Entry $50.00 NZD</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-
-								<div id="confirm" class="hidden">
-							    <div>Ship to:</div>
-							    <div><span id="recipient"></span>, <span id="line1"></span>, <span id="city"></span></div>
-							    <div><span id="state"></span>, <span id="zip"></span>, <span id="country"></span></div>
-
-							    <button class="special" id="confirmButton">Complete Payment</button>
-								</div>
-								<div id="thanks" class="hidden">
-								    Thanks, <span id="thanksname"></span>!
-								</div>
-
-								<p id="msg" class="hidden error">Please check the checkbox</p>
-								<p>
-							    <label><input id="check" type="checkbox"> Check here to continue</label>
-								</p>
-
-
-						    <script>
-									function isValid() {
-										return document.querySelector('#check').checked;
-									}
-
-									function onChangeCheckbox(handler) {
-										document.querySelector('#check').addEventListener('change', handler);
-									}
-
-									function toggleValidationMessage() {
-										document.querySelector('#msg').style.display = (isValid() ? 'none' : 'block');
-									}
-
-									function toggleButton(actions) {
-										return isValid() ? actions.enable() : actions.disable();
-									}
-
-
-					        paypal.Button.render({
-				            env: 'sandbox', // Or 'production',
-										style: {
-					            label: 'checkout', // checkout | credit | pay
-					            size:  'small',    // small | medium | responsive
-					            shape: 'pill',     // pill | rect
-					            color: 'blue'      // gold | blue | silver
-						        },
-										client: {
-					            sandbox: 'ASf59Qvr6trrkb3Oa4P6jJyyIxd3YaXC6HnsiDyRJ8bjT-YdaUFA77JAWXvZyqDqb9ACAjePyM_RSi-s',
-					            production: '<insert production client id>'
-						        },
-				            commit: true, // Show a 'Pay Now' button
-										// validate: function(actions) {
-					          //   toggleButton(actions);
-					          //   onChangeCheckbox(function() {
-					          //       toggleButton(actions);
-					          //   });
-						        // },
-
-						        // onClick: function() {
-										// 	alert('Clicked!')
-					          //   toggleValidationMessage();
-						        // },
-				            payment: function(actions) {
-											return actions.payment.create({
-				                transactions: [{
-	                        amount: { total: '0.01', currency: 'USD' }
-		                    }]
-					            }, {
-				                input_fields: {
-			                    no_shipping: 1
-												}
-			                });
-			                // Set up the payment here
-				            },
-				            onAuthorize: function(data, actions) {
-											// if (error === 'INSTRUMENT_DECLINED') {
-				              //   actions.restart();
-					            // }
-											return actions.payment.get().then(function(data) {
-												// Display the payment details and a confirmation button
-												alert('Authorized!')
-												var shipping = data.payer.payer_info.shipping_address;
-
-												// document.querySelector('#recipient').innerText = shipping.recipient_name;
-												// document.querySelector('#line1').innerText     = shipping.line1;
-												// document.querySelector('#city').innerText      = shipping.city;
-												// document.querySelector('#state').innerText     = shipping.state;
-												// document.querySelector('#zip').innerText       = shipping.postal_code;
-												// document.querySelector('#country').innerText   = shipping.country_code;
-												//
-												// document.querySelector('#paypal-button-container').style.display = 'none';
-												// document.querySelector('#confirm').style.display = 'block';
-
-												// Listen for click on confirm button
-
-												// document.querySelector('#confirmButton').addEventListener('click', function() {
-													// Disable the button and show a loading message
-													// document.querySelector('#confirm').innerText = 'Loading...';
-													// document.querySelector('#confirm').disabled = true;
-													// Execute the payment
-													// return actions.payment.execute().then(function() {
-														// Show a thank-you note
-														// document.querySelector('#thanksname').innerText = shipping.recipient_name;
-														//
-														// document.querySelector('#confirm').style.display = 'none';
-														// document.querySelector('#thanks').style.display = 'block';
-												// 	});
-												// });
-											});
-											// return actions.payment.execute().then(function() {
-											// 	window.alert('Payment Complete!');
-											// });
-			                // Execute the payment here
-				           	},
-									 	onCancel: function(data, actions) {
-											return actions.redirect();
-									 	},
-									 	onError: function(err) {
-											// Show an error page here, when an error occurs
-										}
-					      	}, '#paypal-button');
-						    </script>
-								<!-- <p align='center'><strong>MEMBERSHIP OPTIONS CLOSED<br>WILL RE-OPEN AFTER ROUND 1</strong></p> -->
-
-								<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 									<div class="row uniform">
 										<div class="12u">
 											<input type="hidden" name="cmd" value="_s-xclick">
-											<input type="hidden" name="hosted_button_id" value="6NSSDB6JHR5UJ">
-											<input type="hidden" name="on0" value="Membership">
+											<input type="hidden" name="hosted_button_id" value="WSWX5E4PZZLLS">
+											<input type="hidden" name="on0" value="Race entry">
+											<input type="hidden" name="on1" value="Grade">
 										</div>
 									</div>
+
 									<div class="row uniform">
 										<div class="12u">
 											<div class="select-wrapper">
-												<select id="demo-category" name="os0">
-													<option value="Membership">Membership $10.00 NZD</option>
-													<option value="Membership & Series Entry">Membership & Series Entry $50.00 NZD</option>
+												<label>Race Selection - see membership page <a href="membership.html">here</a> to sign up and get discounted season entry!</label>
+												<select name="os0">
+													<option value="Race 1 - 28 May - Ngati Tama">Race 1 - 28 May - Ngati Tama $15.00 NZD</option>
+													<option value="Season entry (existing members only)">Season entry all 6 races (existing members only) $75.00 NZD</option>
 												</select>
 											</div>
 										</div>
 									</div>
-									<div class="row uniform">
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on1" value="First Name">
-											<label>First Name<input type="text" required name="os1" placeholder="First Name" maxlength="200"></label>
-										</div>
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on2" value="Family Name">
-											<label>Family Name<input type="text" required name="os2" placeholder="Family Name" maxlength="200"></label>
-										</div>
-									</div>
+
 									<div class="row uniform">
 										<div class="12u">
-											<input type="hidden" name="on3" value="Address">
-											<label>Address<input type="text" name="os3" placeholder="Street Address and Suburb" maxlength="200"></label>
+											<div class="select-wrapper">
+												<label>Grade</label>
+												<select name="os1">
+													<option value="Entry Grade (men and women mixed, 30 mins)">Entry Grade (men and women mixed, 30 mins) </option>
+													<option value="B Grade Men (40 mins)">B Grade Men (40 mins) </option>
+													<option value="A Grade Men (50 mins)">A Grade Men (50 mins) </option>
+													<option value="Open Grade Women (40 mins)">Open Grade Women (40 mins) </option>
+												</select>
+											</table>
+											</div>
 										</div>
 									</div>
+
 									<div class="row uniform">
 										<div class="4u 12u$(small)">
-											<input type="hidden" name="on7" value="DOB">
-											<label>DOB<input type="text" name="os7" placeholder="DD/MM/YYYY" maxlength="200"></label>
+											<input type="hidden" name="on2" value="First Name">
+											<label>First Name<input type="text" name="os2" placeholder="First Name" maxlength="200" required></label>
 										</div>
 										<div class="4u 12u$(small)">
-											<input type="hidden" name="on5" value="Gender">
-											<label>Gender<input type="text" name="os5" maxlength="200"></label>
+											<input type="hidden" name="on3" value="Family Name">
+											<label>Family Name<input type="text" required name="os3" placeholder="Family Name" maxlength="200" required></label>
 										</div>
 										<div class="4u 12u$(small)">
-											<input type="hidden" name="on8" value="Email">
-											<label>Email<input type="email" required name="os8" maxlength="200"></label>
+											<input type="hidden" name="on4" value="Email">
+											<label>Email<input type="email" name="os4" placeholder="Email" required></label>
 										</div>
 									</div>
-									<div class="row uniform">
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on9" value="Emergency Contact Name">
-											<label>Emergency Contact Name<input type="text" name="os9" maxlength="200"></label>
-										</div>
-										<div class="6u 12u$(small)">
-											<input type="hidden" name="on10" value="Emergency Contact Phone">
-											<label>Emergency Contact Phone<input type="text" name="os10" maxlength="200"></label>
-										</div>
-									</div>
+
 									<div class="row uniform">
 										<div class="12u$" style="text-align:center">
 											<ul class="actions">
 												<li><input type="hidden" name="currency_code" value="NZD"></li>
-												<li><input type="hidden" name="item_name" value="Membership"></li>
+												<li><input type="hidden" name="item_name" value="Race Entry"></li>
 												<li><input type="submit" name="submit" value="Purchase Through PayPal" class="special" /></li>
 												<li><input type="reset" value="Reset" /></li>
 											</ul>
 										</div>
 									</div>
-								</form> -->
+								</form>
+
 							</div>
 						</section>
 					</article>
