@@ -65,29 +65,41 @@
 
             <hr />
 
-            <h3>Membership Options</h3>
+            <h3>Membership Form</h3>
             <p>Membership for 2017 is $10</p>
-            <p>Membership and series entry is $85 (one race free!)</p>
+            <p>Membership and series entry is $85 (one race free if you attend all 6!)</p>
 
-            <hr />
-            <h3>Membership Closed until Monday 29th</h3>
-            <hr />
+            <!-- <hr /> -->
+            <!-- <h3>Membership Closed until Monday 29th</h3>
+            <hr /> -->
 
-            <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
               <div class="row uniform">
                 <div class="12u">
                   <input type="hidden" name="cmd" value="_s-xclick">
                   <input type="hidden" name="hosted_button_id" value="PJYV7KHVV64LL">
                   <input type="hidden" name="on0" value="Membership">
+                  <input type="hidden" name="on6" value="Grade">
                 </div>
               </div>
               <div class="row uniform">
-                <div class="12u">
+                <div class="6u 12u$(small)">
                   <div class="select-wrapper">
                     <label>Membership Options</label>
                     <select id="demo-category" name="os0">
                       <option value="Membership">Membership $10.00</option>
                       <option value="Membership &amp; Series Entry">Membership &amp; Series Entry $85.00</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="6u 12u$(small)">
+                  <div class="select-wrapper">
+                    <label>Grade Selection</label>
+                    <select name="os6">
+                      <option value="Entry Grade (men and women mixed, 30 mins)">Entry Grade (men and women mixed, 30 mins) </option>
+                      <option value="B Grade Men (40 mins)">B Grade Men (40 mins) </option>
+                      <option value="A Grade Men (50 mins)">A Grade Men (50 mins) </option>
+                      <option value="Open Grade Women (40 mins)">Open Grade Women (40 mins) </option>
                     </select>
                   </div>
                 </div>
@@ -125,11 +137,11 @@
               <div class="row uniform">
                 <div class="6u 12u$(small)">
                   <input type="hidden" name="on9" value="Emergency Contact Name">
-                  <label>Emergency Contact Name<input type="text" name="os9" maxlength="200"></label>
+                  <label>Emergency Contact Name<input required type="text" name="os9" maxlength="200"></label>
                 </div>
                 <div class="6u 12u$(small)">
                   <input type="hidden" name="on10" value="Emergency Contact Phone">
-                  <label>Emergency Contact Phone<input type="text" name="os10" maxlength="200"></label>
+                  <label>Emergency Contact Phone<input required type="text" name="os10" maxlength="200"></label>
                 </div>
               </div>
               <div class="row uniform">
@@ -137,12 +149,12 @@
                   <ul class="actions">
                     <li><input type="hidden" name="currency_code" value="NZD"></li>
                     <li><input type="hidden" name="item_name" value="Membership"></li>
-                    <li><input type="submit" name="submit" value="Purchase Through PayPal" class="special" /></li>
+                    <li><input type="submit" name="submit" value="Purchase With PayPal" class="special" /></li>
                     <li><input type="reset" value="Reset" /></li>
                   </ul>
                 </div>
               </div>
-            </form> -->
+            </form>
           </div>
         </section>
       </article>
