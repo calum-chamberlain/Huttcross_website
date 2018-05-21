@@ -2311,6 +2311,7 @@
 		button.special,
 		.button.special {
 			background-color: #616D7E;
+			width: 30em;
 			/*background-color: #620062;*/
 			box-shadow: none !important;
 			color: #ffffff !important;
@@ -2356,7 +2357,7 @@
 			button,
 			.button {
 				height: 3.75em;
-				line-height: 3.75em;
+				line-height: 3.75em
 			}
 
 		}
